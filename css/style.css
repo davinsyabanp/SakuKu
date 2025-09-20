@@ -98,16 +98,30 @@ body {
 
 /* Dashboard Styles */
 .dashboard {
-    display: grid;
+    display: grid !important;
+    grid-template-areas: 
+        "balance"
+        "quick" 
+        "charts" !important;
+    grid-template-columns: 1fr !important;
     gap: 2rem;
 }
 
-.balance-card {
+.dashboard__balance-card {
+    grid-area: balance;
     background-color: var(--card-bg);
     border-radius: 12px;
     box-shadow: var(--shadow);
     padding: 24px;
     text-align: center;
+}
+
+.dashboard__quick-add-form {
+    grid-area: quick;
+}
+
+.dashboard__charts-container {
+    grid-area: charts;
 }
 
 .balance-card__title {
@@ -557,10 +571,10 @@ body {
     }
     
     .dashboard {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr !important;
         grid-template-areas: 
             "balance balance"
-            "quick charts";
+            "quick charts" !important;
     }
     
     .dashboard__balance-card {
