@@ -1,0 +1,679 @@
+/* FinanceTracker CSS Framework */
+:root {
+    --primary: #2563eb;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --background: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+    line-height: 1.6;
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+}
+
+.header__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.header__nav {
+    display: flex;
+    gap: 10px;
+}
+
+.header__nav-item {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--text-muted);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.header__nav-item:hover,
+.header__nav-item--active {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Main Layout */
+.main {
+    margin-top: 60px;
+    padding: 20px;
+    min-height: calc(100vh - 100px);
+}
+
+.section {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.section--active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Dashboard Styles */
+.dashboard {
+    display: grid;
+    gap: 2rem;
+}
+
+.balance-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 24px;
+    text-align: center;
+}
+
+.balance-card__title {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.balance-card__amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.balance-card__details {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.balance-card__income {
+    color: var(--success);
+    font-weight: 500;
+}
+
+.balance-card__expense {
+    color: var(--danger);
+    font-weight: 500;
+}
+
+/* Quick Form Styles - Fixed Integration */
+.quick-form,
+.dashboard__quick-add-form {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: none;
+}
+
+.quick-form__title {
+    grid-column: 1 / -1;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.quick-form__input,
+.quick-form__select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-bg);
+}
+
+.quick-form__input:focus,
+.quick-form__select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.quick-form__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.quick-form__input::placeholder,
+.quick-form__select option:first-child {
+    color: var(--text-muted);
+}
+
+/* Required field indicators */
+.quick-form__input:required + label::after,
+.quick-form__select:required + label::after {
+    content: " *";
+    color: var(--danger);
+    font-weight: bold;
+}
+
+/* Error states */
+.quick-form__input.error,
+.quick-form__select.error {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.quick-form__error-message {
+    color: var(--danger);
+    font-size: 0.875rem;
+    margin-top: 4px;
+    display: none;
+}
+
+.quick-form__error-message.show {
+    display: block;
+}
+
+.quick-form__button {
+    grid-column: 1 / -1;
+    padding: 12px 24px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quick-form__button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Charts Container */
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.chart-card {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    height: 400px;
+    overflow: hidden;
+}
+
+.chart-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.chart-card__canvas {
+    max-width: 100%;
+    height: 300px !important;
+    max-height: 300px !important;
+}
+
+/* Transaction Styles */
+.transactions__filters {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filters__select,
+.filters__search {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    min-width: 150px;
+}
+
+.filters__search {
+    flex: 1;
+    min-width: 200px;
+}
+
+.transaction-form {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.transaction-form__title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.transaction-form__group {
+    margin-bottom: 1rem;
+}
+
+.transaction-form__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.transaction-form__input,
+.transaction-form__select,
+.transaction-form__textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.transaction-form__input:focus,
+.transaction-form__select:focus,
+.transaction-form__textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.transaction-form__button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.transaction-form__button {
+    background-color: var(--primary);
+    color: white;
+}
+
+.transaction-form__button:hover {
+    background-color: #1d4ed8;
+}
+
+.transaction-form__button--cancel {
+    background-color: var(--text-muted);
+    color: white;
+    display: none;
+}
+
+.transaction-form__button--cancel:hover {
+    background-color: #475569;
+}
+
+/* Table Styles */
+.transactions__table-container {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.transactions__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transactions__th,
+.transactions__td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.transactions__th {
+    background-color: var(--background);
+    font-weight: 600;
+    color: var(--text);
+}
+
+.transactions__tr:hover {
+    background-color: var(--background);
+}
+
+.transactions__tr--sample {
+    opacity: 0.7;
+}
+
+.transactions__btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.transactions__btn--edit {
+    background-color: var(--warning);
+    color: white;
+}
+
+.transactions__btn--edit:hover {
+    background-color: #d97706;
+}
+
+.transactions__btn--delete {
+    background-color: var(--danger);
+    color: white;
+}
+
+.transactions__btn--delete:hover {
+    background-color: #dc2626;
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge--income {
+    background-color: var(--success);
+    color: white;
+}
+
+.badge--expense {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* Budget Styles */
+.budget-form {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.budget-form__title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.budget-form__categories {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.budget-form__category {
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.budget-form__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.budget-form__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.budget-form__progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar__fill {
+    height: 100%;
+    background-color: var(--success);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.progress-bar__fill[data-over-budget] {
+    background-color: var(--danger);
+}
+
+.budget-form__status {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    min-width: 80px;
+}
+
+.budget-form__button {
+    padding: 12px 24px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.budget-form__button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Footer Styles */
+.footer {
+    height: 60px;
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+.footer__text {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .main {
+        padding: 40px;
+    }
+    
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "balance balance"
+            "quick charts";
+    }
+    
+    .dashboard__balance-card {
+        grid-area: balance;
+    }
+    
+    .dashboard__quick-add-form {
+        grid-area: quick;
+    }
+    
+    .dashboard__charts-container {
+        grid-area: charts;
+    }
+    
+    .quick-form,
+    .dashboard__quick-add-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quick-form__button {
+        grid-column: 1 / -1;
+    }
+    
+    .transactions__filters {
+        flex-wrap: nowrap;
+    }
+    
+    .budget-form__categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 300px 1fr;
+        grid-template-areas: 
+            "balance charts"
+            "quick charts";
+    }
+    
+    .budget-form__categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Loading and Animation States */
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Additional section isolation */
+.main .section:not(.section--active) {
+    position: absolute;
+    left: -9999px;
+    visibility: hidden;
+}
+
+.main .section.section--active {
+    position: relative;
+    left: auto;
+    visibility: visible;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}

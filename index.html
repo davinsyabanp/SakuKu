@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceTracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">FinanceTracker</div>
+        <nav class="header__nav">
+            <a href="#dashboard" class="header__nav-item header__nav-item--active">Dashboard</a>
+            <a href="#transactions" class="header__nav-item">Transactions</a>
+            <a href="#budget" class="header__nav-item">Budget</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard section section--active">
+            <div class="dashboard__balance-card balance-card">
+                <h2 class="balance-card__title">Current Balance</h2>
+                <div class="balance-card__amount" id="currentBalance">$0.00</div>
+                <div class="balance-card__details">
+                    <span class="balance-card__income">Income: <span id="totalIncome">$0.00</span></span>
+                    <span class="balance-card__expense">Expenses: <span id="totalExpenses">$0.00</span></span>
+                </div>
+            </div>
+
+            <form class="dashboard__quick-add-form quick-form">
+                <h3 class="quick-form__title">Quick Add Transaction</h3>
+                <input type="number" class="quick-form__input" name="amount" placeholder="Amount" required step="0.01">
+                <select class="quick-form__select" name="type" required>
+                    <option value="">Select Type</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <select class="quick-form__select" name="category" required>
+                    <option value="">Select Category</option>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="bills">Bills</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="date" class="quick-form__input" name="date" required>
+                <input type="text" class="quick-form__input" name="description" placeholder="Description" required>
+                <button type="submit" class="quick-form__button">Add Transaction</button>
+            </form>
+
+            <div class="dashboard__charts-container charts-container">
+                <div class="chart-card">
+                    <h3 class="chart-card__title">Expenses by Category</h3>
+                    <canvas id="categoryChart" class="chart-card__canvas"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-card__title">Monthly Trend</h3>
+                    <canvas id="trendChart" class="chart-card__canvas"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transactions Section -->
+        <section id="transactions" class="transactions section">
+            <h2 class="section__title">All Transactions</h2>
+            
+            <div class="transactions__filters filters">
+                <select class="filters__select" id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="bills">Bills</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filters__select" id="filterType">
+                    <option value="">All Types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <input type="text" class="filters__search" id="searchTransactions" placeholder="Search transactions...">
+            </div>
+
+            <form class="transactions__add-form transaction-form">
+                <h3 class="transaction-form__title">Add New Transaction</h3>
+                <div class="transaction-form__group">
+                    <label class="transaction-form__label" for="transactionAmount">Amount</label>
+                    <input type="number" class="transaction-form__input" id="transactionAmount" name="amount" required step="0.01">
+                </div>
+                <div class="transaction-form__group">
+                    <label class="transaction-form__label" for="transactionType">Type</label>
+                    <select class="transaction-form__select" id="transactionType" name="type" required>
+                        <option value="">Select Type</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div class="transaction-form__group">
+                    <label class="transaction-form__label" for="transactionCategory">Category</label>
+                    <select class="transaction-form__select" id="transactionCategory" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="bills">Bills</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="transaction-form__group">
+                    <label class="transaction-form__label" for="transactionDate">Date</label>
+                    <input type="date" class="transaction-form__input" id="transactionDate" name="date" required>
+                </div>
+                <div class="transaction-form__group">
+                    <label class="transaction-form__label" for="transactionDescription">Description</label>
+                    <textarea class="transaction-form__textarea" id="transactionDescription" name="description" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="transaction-form__button">Add Transaction</button>
+                <button type="button" class="transaction-form__button transaction-form__button--cancel" id="cancelEdit">Cancel</button>
+            </form>
+
+            <div class="transactions__table-container">
+                <table class="transactions__table" id="transactionTable">
+                    <thead class="transactions__thead">
+                        <tr>
+                            <th class="transactions__th">Date</th>
+                            <th class="transactions__th">Description</th>
+                            <th class="transactions__th">Category</th>
+                            <th class="transactions__th">Type</th>
+                            <th class="transactions__th">Amount</th>
+                            <th class="transactions__th">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="transactions__tbody" id="transactionTableBody">
+                        <tr class="transactions__tr transactions__tr--sample">
+                            <td class="transactions__td">2025-01-01</td>
+                            <td class="transactions__td">Monthly Salary</td>
+                            <td class="transactions__td">Other</td>
+                            <td class="transactions__td">
+                                <span class="badge badge--income">Income</span>
+                            </td>
+                            <td class="transactions__td">$3,000.00</td>
+                            <td class="transactions__td">
+                                <button class="transactions__btn transactions__btn--edit" data-id="1">Edit</button>
+                                <button class="transactions__btn transactions__btn--delete" data-id="1">Delete</button>
+                            </td>
+                        </tr>
+                        <tr class="transactions__tr transactions__tr--sample">
+                            <td class="transactions__td">2025-01-02</td>
+                            <td class="transactions__td">Groceries</td>
+                            <td class="transactions__td">Food</td>
+                            <td class="transactions__td">
+                                <span class="badge badge--expense">Expense</span>
+                            </td>
+                            <td class="transactions__td">$85.50</td>
+                            <td class="transactions__td">
+                                <button class="transactions__btn transactions__btn--edit" data-id="2">Edit</button>
+                                <button class="transactions__btn transactions__btn--delete" data-id="2">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Budget Section -->
+        <section id="budget" class="budget section">
+            <h2 class="section__title">Budget Management</h2>
+            
+            <form class="budget__form budget-form" id="budgetForm">
+                <h3 class="budget-form__title">Set Monthly Budget</h3>
+                <div class="budget-form__categories">
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetFood">Food</label>
+                        <input type="number" class="budget-form__input" id="budgetFood" name="food" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="food"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="food">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetTransport">Transport</label>
+                        <input type="number" class="budget-form__input" id="budgetTransport" name="transport" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="transport"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="transport">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetEntertainment">Entertainment</label>
+                        <input type="number" class="budget-form__input" id="budgetEntertainment" name="entertainment" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="entertainment"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="entertainment">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetShopping">Shopping</label>
+                        <input type="number" class="budget-form__input" id="budgetShopping" name="shopping" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="shopping"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="shopping">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetBills">Bills</label>
+                        <input type="number" class="budget-form__input" id="budgetBills" name="bills" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="bills"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="bills">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetHealthcare">Healthcare</label>
+                        <input type="number" class="budget-form__input" id="budgetHealthcare" name="healthcare" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="healthcare"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="healthcare">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetEducation">Education</label>
+                        <input type="number" class="budget-form__input" id="budgetEducation" name="education" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="education"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="education">$0 / $0</span>
+                        </div>
+                    </div>
+                    <div class="budget-form__category">
+                        <label class="budget-form__label" for="budgetOther">Other</label>
+                        <input type="number" class="budget-form__input" id="budgetOther" name="other" step="0.01">
+                        <div class="budget-form__progress">
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" data-category="other"></div>
+                            </div>
+                            <span class="budget-form__status" data-category="other">$0 / $0</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="budget-form__button">Update Budget</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__text">&copy; 2025 FinanceTracker - Personal Finance Management</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
