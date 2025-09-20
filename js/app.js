@@ -765,7 +765,7 @@ const initApp = () => {
     // Show dashboard by default
     showSection('dashboard');
     
-    console.log('FinanceTracker App Initialized Successfully!');
+    console.log('SakuKu App Initialized Successfully!');
 };
 
 // Start the application when DOM is loaded

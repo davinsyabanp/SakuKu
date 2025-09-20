@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SakuKu - Personal Finance Tracker</title>
+    <title>SakuKu - Manage Students Finances Easily</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,10 +21,10 @@
         <section id="dashboard" class="dashboard section section--active">
             <div class="dashboard__balance-card balance-card">
                 <h2 class="balance-card__title">Current Balance</h2>
-                <div class="balance-card__amount" id="currentBalance">$0.00</div>
+                <div class="balance-card__amount" id="currentBalance">Rp0.00</div>
                 <div class="balance-card__details">
-                    <span class="balance-card__income">Income: <span id="totalIncome">$0.00</span></span>
-                    <span class="balance-card__expense">Expenses: <span id="totalExpenses">$0.00</span></span>
+                    <span class="balance-card__income">Income: <span id="totalIncome">Rp0.00</span></span>
+                    <span class="balance-card__expense">Expenses: <span id="totalExpenses">Rp0.00</span></span>
                 </div>
             </div>
 
@@ -142,26 +142,26 @@
                     </thead>
                     <tbody class="transactions__tbody" id="transactionTableBody">
                         <tr class="transactions__tr transactions__tr--sample">
-                            <td class="transactions__td">2025-01-01</td>
+                            <td class="transactions__td">15-9-2025</td>
                             <td class="transactions__td">Monthly Salary</td>
                             <td class="transactions__td">Other</td>
                             <td class="transactions__td">
                                 <span class="badge badge--income">Income</span>
                             </td>
-                            <td class="transactions__td">$3,000.00</td>
+                            <td class="transactions__td">Rp5,000,000.00</td>
                             <td class="transactions__td">
                                 <button class="transactions__btn transactions__btn--edit" data-id="1">Edit</button>
                                 <button class="transactions__btn transactions__btn--delete" data-id="1">Delete</button>
                             </td>
                         </tr>
                         <tr class="transactions__tr transactions__tr--sample">
-                            <td class="transactions__td">2025-01-02</td>
+                            <td class="transactions__td">21-9-2025</td>
                             <td class="transactions__td">Groceries</td>
                             <td class="transactions__td">Food</td>
                             <td class="transactions__td">
                                 <span class="badge badge--expense">Expense</span>
                             </td>
-                            <td class="transactions__td">$85.50</td>
+                            <td class="transactions__td">Rp10,000</td>
                             <td class="transactions__td">
                                 <button class="transactions__btn transactions__btn--edit" data-id="2">Edit</button>
                                 <button class="transactions__btn transactions__btn--delete" data-id="2">Delete</button>
@@ -186,7 +186,7 @@
                             <div class="progress-bar">
                                 <div class="progress-bar__fill" data-category="food"></div>
                             </div>
-                            <span class="budget-form__status" data-category="food">$0 / $0</span>
+                            <span class="budget-form__status" data-category="food">Rp0 / Rp0</span>
                         </div>
                     </div>
                     <div class="budget-form__category">
@@ -196,7 +196,7 @@
                             <div class="progress-bar">
                                 <div class="progress-bar__fill" data-category="transport"></div>
                             </div>
-                            <span class="budget-form__status" data-category="transport">$0 / $0</span>
+                            <span class="budget-form__status" data-category="transport">Rp0 / Rp0</span>
                         </div>
                     </div>
                     <div class="budget-form__category">
@@ -206,7 +206,7 @@
                             <div class="progress-bar">
                                 <div class="progress-bar__fill" data-category="entertainment"></div>
                             </div>
-                            <span class="budget-form__status" data-category="entertainment">$0 / $0</span>
+                            <span class="budget-form__status" data-category="entertainment">Rp0 / Rp0</span>
                         </div>
                     </div>
                     <div class="budget-form__category">
@@ -216,7 +216,7 @@
                             <div class="progress-bar">
                                 <div class="progress-bar__fill" data-category="shopping"></div>
                             </div>
-                            <span class="budget-form__status" data-category="shopping">$0 / $0</span>
+                            <span class="budget-form__status" data-category="shopping">Rp0 / Rp0</span>
                         </div>
                     </div>
                     <div class="budget-form__category">
@@ -256,7 +256,7 @@
                             <div class="progress-bar">
                                 <div class="progress-bar__fill" data-category="other"></div>
                             </div>
-                            <span class="budget-form__status" data-category="other">$0 / $0</span>
+                            <span class="budget-form__status" data-category="other">Rp0 / Rp0</span>
                         </div>
                     </div>
                 </div>
@@ -266,7 +266,7 @@
     </main>
 
     <footer class="footer">
-        <p class="footer__text">&copy; 2025 FinanceTracker - Personal Finance Management</p>
+        <p class="footer__text">&copy; 2025 SakuKu - Manage Student Finances Easily</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
