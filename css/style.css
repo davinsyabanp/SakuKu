@@ -392,25 +392,36 @@ body {
     border-radius: 12px;
     box-shadow: var(--shadow);
     overflow: hidden;
+    overflow-x: auto;
 }
 
 .transactions__table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
 }
 
 .transactions__th,
 .transactions__td {
-    padding: 12px;
+    padding: 8px 6px;
     text-align: left;
     border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
 }
 
 .transactions__th {
     background-color: var(--background);
     font-weight: 600;
     color: var(--text);
+    white-space: nowrap;
 }
+
+.transactions__th:nth-child(1) { width: 15%; } /* Date */
+.transactions__th:nth-child(2) { width: 30%; } /* Description */  
+.transactions__th:nth-child(3) { width: 15%; } /* Category */
+.transactions__th:nth-child(4) { width: 15%; } /* Type */
+.transactions__th:nth-child(5) { width: 15%; } /* Amount */
+.transactions__th:nth-child(6) { width: 10%; } /* Actions */
 
 .transactions__tr:hover {
     background-color: var(--background);
