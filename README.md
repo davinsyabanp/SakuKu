@@ -93,5 +93,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 For any questions or suggestions, reach out to Davin at dsyabanp@gmail.com.
-
-```
