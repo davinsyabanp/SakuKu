@@ -5,7 +5,10 @@
 SakuKu is a personal finance app designed specifically for students living away from home in Indonesia. This app helps students manage, view, and monitor their expenses easily.
 
 ## Tagline
-“Manage Student Finances with Ease”
+"Manage Student Finances with Ease"
+
+## 🌐 Live Demo
+**Akses aplikasi langsung di:** [https://saku-ku.netlify.app/](https://saku-ku.netlify.app/)
 
 ## Target Users
 - Students living away from home in Indonesia who live in boarding houses
@@ -39,6 +42,20 @@ SakuKu is a personal finance app designed specifically for students living away 
 ### Single-Page Application
 - Single-page application structure with navigation between sections (Dashboard/Transactions/Budget)
 
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+*Dashboard utama menampilkan saldo saat ini, quick add transaction, expenses by category, dan monthly trend*
+
+### Transactions
+![Transactions](screenshots/transactions.png)
+*Halaman transaksi dengan fitur filter, search, dan CRUD operations untuk mengelola semua transaksi*
+
+### Budget Management
+![Budget Management](screenshots/budget.png)
+*Halaman pengelolaan budget untuk setiap kategori dengan progress monitoring*
+
 ## Technology Stack
 
 - **Frontend**: HTML5, CSS3 (with CSS Grid and Flexbox), Vanilla JavaScript ES6+
@@ -57,6 +74,10 @@ SakuKu is a personal finance app designed specifically for students living away 
 
 ## Setup Instructions
 
+### Option 1: Access Live Demo (Recommended)
+**Akses langsung aplikasi yang sudah di-deploy:** [https://saku-ku.netlify.app/](https://saku-ku.netlify.app/)
+
+### Option 2: Run Locally
 1. **Clone Repository**: `git clone [repo-url]`
 2. **Open index.html**: Open `index.html` directly in a web browser (no server required)
 3. **Start Adding Transactions**: Start adding transactions to see the functions
