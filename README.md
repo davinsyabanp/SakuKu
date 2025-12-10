@@ -1,5 +1,3 @@
----
-
 # SakuKu: Manage Student Finances Easily
 
 SakuKu is a personal finance app designed specifically for students living away from home in Indonesia. This app helps students manage, view, and monitor their expenses easily.
